@@ -1,29 +1,46 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { useAuth } from './composables/useAuth'
+
+const router = useRouter()
+const auth = useAuth()
+const user = auth.user
+const isAuthenticated = auth.isAuthenticated
+
+async function logout() {
+  auth.logout()
+  await router.push('/login')
+}
 </script>
 
 <template>
   <div class="app-shell">
-    <nav>
-      <RouterLink to="/">Tasks</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-    </nav>
+    <header>
+      <RouterLink to="/">Knowledge Base</RouterLink>
+      <div class="right">
+        <span v-if="user">{{ user.email }}</span>
+        <button v-if="isAuthenticated" @click="logout">Logout</button>
+      </div>
+    </header>
     <RouterView />
   </div>
 </template>
 
 <style scoped>
 .app-shell {
-  max-width: 48rem;
-  margin: 2rem auto;
+  max-width: 70rem;
+  margin: 1.5rem auto;
   padding: 0 1rem;
 }
-nav {
+header {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
-.router-link-exact-active {
-  font-weight: 700;
+.right {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 </style>

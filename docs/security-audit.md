@@ -1,14 +1,15 @@
 # Security Audit Notes
 
-## Current posture
-- No backend surface and no remote data processing.
-- User-generated text is rendered as plain text in Vue templates.
-- Storage is local browser storage only.
+## Implemented controls
+- Auth required for write operations (`POST`, `PUT`, `DELETE /articles`).
+- Input normalization for tags and title validation.
+- CORS and JSON body parsing explicitly configured.
 
-## Dependency checks
-- `npm audit` is run after dependency updates.
-- CI enforces install and test integrity on each push/PR.
+## Residual risks
+- Demo token model is not cryptographically signed.
+- Credentials are seed-only and for local/dev use.
 
-## Follow-up actions
-1. Add dependency review action for transitive-risk visibility.
-2. Add CodeQL workflow when backend/API surface is introduced.
+## Next hardening steps
+1. Replace demo token with JWT and expiration.
+2. Add rate limiting and auth failure lockouts.
+3. Add dependency review and CodeQL workflows.

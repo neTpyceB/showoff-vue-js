@@ -43,3 +43,5 @@ playwright-report/
 
 # Local scaffold scratch
 temp-app/
+
+.vite/

@@ -1,6 +1,7 @@
 :root {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  line-height: 1.5;
+  color: #101623;
+  background: #f8fafc;
 }
 
 * {
@@ -12,6 +13,16 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
+}
+
+input,
+textarea,
+button {
+  border: 1px solid #cdd5df;
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  background: #fff;
 }

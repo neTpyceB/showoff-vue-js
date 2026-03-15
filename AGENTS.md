@@ -1,17 +1,17 @@
 # AGENTS Rules
 
 ## Development standards
-- Keep implementations minimal, composable, and explicit.
+- Keep implementation concise, composable, and explicit.
 - Use latest stable dependencies and Node 22+.
-- Any code change must be followed by lint, type-check, unit, smoke, and e2e tests.
+- Any code change must be followed by lint, type-check, and all test suites.
 
-## Project quality gates
-- Required commands after modifications:
-  - `npm run lint`
-  - `npm run type-check`
-  - `npm run test:unit`
-  - `npm run test:smoke`
-  - `npm run test:e2e`
+## Required validation sequence
+1. `npm run lint`
+2. `npm run type-check`
+3. `npm run test:unit`
+4. `npm run test:smoke`
+5. `npm run test:api`
+6. `npm run test:e2e`
 
-## Delivery docs
-- Keep `README.md`, `docs/architecture.md`, `docs/roadmap.md`, `docs/rules.md`, and `docs/security-audit.md` synchronized with the implementation.
+## Documentation sync
+- Keep `README.md`, `docs/architecture.md`, `docs/roadmap.md`, `docs/rules.md`, and `docs/security-audit.md` aligned with implementation.
