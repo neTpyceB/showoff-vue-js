@@ -1,38 +1,35 @@
-# Interactive Task Manager (Vue)
+# Developer Knowledge Base Platform
 
-A minimal senior-grade Vue 3 app with:
-- CRUD tasks
-- localStorage persistence
-- component composition
-- robust form handling
-- basic routing
+Vue 3 + REST API knowledge base platform with:
+- authentication
+- markdown editing + live preview
+- tagging system
+- search and tag filtering
+- REST API integration
 
-## Stack
-- Vue 3 + TypeScript + Vue Router
-- Vitest (unit + smoke)
-- Playwright (e2e)
-- Docker + Docker Compose
+## Default demo credentials
+- email: `dev@kb.local`
+- password: `devpass`
 
-## Run locally
+## Run local
 ```bash
 npm ci
 npm run dev
 ```
+- Web: http://localhost:5173
+- API: http://localhost:3000
 
-## Run with Docker
+## Docker
 ```bash
 docker compose up --build
 ```
-App: [http://localhost:5173](http://localhost:5173)
 
-## Quality checks
+## Test gates
 ```bash
 npm run lint
 npm run type-check
 npm run test:unit
 npm run test:smoke
+npm run test:api
 npm run test:e2e
 ```
-
-## CI
-GitHub Actions workflow: `.github/workflows/ci.yml`

@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "email": "dev@kb.local",
+      "password": "devpass",
+      "name": "Dev User"
+    }
+  ],
+  "articles": [
+    {
+      "id": "dd532077-d84d-409c-b486-6c5acc6da6ba",
+      "title": "REST client tips",
+      "content": "# Notes\nUse typed API wrappers.",
+      "tags": [
+        "api",
+        "testing"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T20:48:14.506Z",
+      "updatedAt": "2026-03-15T20:48:14.506Z"
+    },
+    {
+      "id": "9bb60876-f063-4c24-92d2-a13c077bc439",
+      "title": "REST client tips",
+      "content": "# Notes\nUse typed API wrappers.",
+      "tags": [
+        "api",
+        "testing"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T20:47:47.076Z",
+      "updatedAt": "2026-03-15T20:47:47.076Z"
+    },
+    {
+      "id": "a1",
+      "title": "Vue 3 Composition Patterns",
+      "content": "# Composition API\nUse composables for reusable domain logic.",
+      "tags": [
+        "vue",
+        "architecture"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T00:00:00.000Z",
+      "updatedAt": "2026-03-15T00:00:00.000Z"
+    }
+  ]
+}

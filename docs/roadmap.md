@@ -1,6 +1,6 @@
 # Roadmap Ideas
 
-1. Inline task title editing with keyboard shortcuts.
-2. Task filtering (`all`, `active`, `done`) via route query params.
-3. Optional due date and sorting.
-4. Offline-first sync strategy abstraction (beyond localStorage).
+1. Replace file storage with PostgreSQL and migrations.
+2. Add role-based permissions per article and team scope.
+3. Add revision history and markdown diff view.
+4. Add semantic search (embedding index) for docs retrieval.

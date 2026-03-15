@@ -1,7 +1,6 @@
 # Engineering Rules
 
-- Prefer composables for domain logic and stateless components for rendering.
-- Keep dependency footprint small.
-- Avoid duplicate fallback paths unless risk requires it.
-- Every behavior must be covered by automated tests.
-- Keep CI green before merging.
+- Use composables for stateful domain logic and components for rendering.
+- Keep API payloads strict and explicit.
+- Prefer deterministic tests over implicit timing assumptions.
+- CI must run lint, type-check, unit, smoke, API, and e2e before merge.

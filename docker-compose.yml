@@ -1,10 +1,25 @@
 services:
+  api:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+
   app:
     build:
       context: .
+      dockerfile: Dockerfile
       target: dev
+    environment:
+      VITE_API_URL: http://localhost:3000
     ports:
       - '5173:5173'
+    depends_on:
+      - api
     volumes:
       - .:/app
       - /app/node_modules
