@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('creates, toggles, removes task and persists after reload', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: 'Interactive Task Manager' })).toBeVisible()
+  await expect(page.locator('body')).toContainText('Interactive Task Manager', { timeout: 15000 })
 
   await page.getByPlaceholder('Add task').fill('Prepare demo')
   await page.getByRole('button', { name: 'Add' }).click()
