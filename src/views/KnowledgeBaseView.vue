@@ -12,6 +12,8 @@ const query = kb.query
 const selectedTag = kb.selectedTag
 const editing = kb.editing
 const allTags = kb.allTags
+const loading = kb.loading
+const error = kb.error
 
 onMounted(() => {
   void kb.load()
@@ -42,6 +44,8 @@ async function onQuery(value: string) {
       @select-tag="selectTag"
     />
   </section>
+  <p v-if="loading">Loading...</p>
+  <p v-if="error">{{ error }}</p>
 </template>
 
 <style scoped>

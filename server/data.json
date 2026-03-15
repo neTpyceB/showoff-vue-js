@@ -9,6 +9,54 @@
   ],
   "articles": [
     {
+      "id": "4864f20a-9091-4a41-b6ff-1e50e8db227d",
+      "title": "REST client tips",
+      "content": "# Notes\nUse typed API wrappers.",
+      "tags": [
+        "api",
+        "testing"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T21:24:27.555Z",
+      "updatedAt": "2026-03-15T21:24:27.555Z"
+    },
+    {
+      "id": "96df6b71-45bf-454e-825d-ee1871b0fbf3",
+      "title": "REST client tips",
+      "content": "# Notes\nUse typed API wrappers.",
+      "tags": [
+        "api",
+        "testing"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T21:19:30.421Z",
+      "updatedAt": "2026-03-15T21:19:30.421Z"
+    },
+    {
+      "id": "df90804f-d479-465c-8c20-e40fb4cf1767",
+      "title": "REST client tips",
+      "content": "# Notes\nUse typed API wrappers.",
+      "tags": [
+        "api",
+        "testing"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T21:15:02.218Z",
+      "updatedAt": "2026-03-15T21:15:02.218Z"
+    },
+    {
+      "id": "57baa425-0e3b-4b51-8f40-70ea53204bef",
+      "title": "REST client tips",
+      "content": "# Notes\nUse typed API wrappers.",
+      "tags": [
+        "api",
+        "testing"
+      ],
+      "authorId": "u1",
+      "createdAt": "2026-03-15T21:13:08.175Z",
+      "updatedAt": "2026-03-15T21:13:08.175Z"
+    },
+    {
       "id": "dd532077-d84d-409c-b486-6c5acc6da6ba",
       "title": "REST client tips",
       "content": "# Notes\nUse typed API wrappers.",

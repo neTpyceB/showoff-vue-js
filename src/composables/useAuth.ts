@@ -7,17 +7,24 @@ const USER_KEY = 'kb-user'
 
 const token = ref<string>(localStorage.getItem(TOKEN_KEY) ?? '')
 const user = ref<User | null>(safeParse(localStorage.getItem(USER_KEY)))
+const error = ref('')
 
 export function useAuth() {
   const isAuthenticated = computed(() => Boolean(token.value))
 
   async function login(email: string, password: string) {
-    const data = await loginApi(email, password)
-    token.value = data.token
-    user.value = data.user
+    error.value = ''
+    try {
+      const data = await loginApi(email, password)
+      token.value = data.token
+      user.value = data.user
 
-    localStorage.setItem(TOKEN_KEY, token.value)
-    localStorage.setItem(USER_KEY, JSON.stringify(user.value))
+      localStorage.setItem(TOKEN_KEY, token.value)
+      localStorage.setItem(USER_KEY, JSON.stringify(user.value))
+    } catch {
+      error.value = 'Authentication failed. Ensure API is running on localhost:3000.'
+      throw new Error(error.value)
+    }
   }
 
   function logout() {
@@ -30,6 +37,7 @@ export function useAuth() {
   return {
     token,
     user,
+    error,
     isAuthenticated,
     login,
     logout,
