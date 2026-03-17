@@ -45,3 +45,5 @@ playwright-report/
 temp-app/
 
 .vite/
+.nuxt/
+.output/

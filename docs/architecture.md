@@ -1,18 +1,18 @@
 # Architecture
 
 ## Overview
-- Vue frontend talks only to the gateway service.
-- Auth service owns identity and tenant memberships.
-- Module service owns tenant manifests, enabled modules, and action authorization.
-- Gateway composes both services into a frontend-friendly bootstrap contract.
+- Nuxt SSR renders the home experience and acts as a lightweight BFF via `server/api`.
+- Feed, profile, and discovery services stay isolated and are fetched in parallel on the server.
+- The client hydrates only the interactive state and attaches a real-time EventSource for live feed inserts.
 
-## Frontend model
-- Tenant switch changes the active bootstrap payload.
-- Dynamic routes are registered from backend module manifests.
-- Plugin registry maps module keys to frontend module views.
-- Permission engine evaluates backend-issued policies for `view`, `manage`, and `configure`.
+## Request flow
+1. SSR request hits `pages/index.vue`.
+2. `server/api/home.get.ts` aggregates timeline, stories, profiles, and trends from the three services.
+3. Nitro route rules cache the aggregate response for CDN and edge layers.
+4. Client hydration seeds `useHomeState()` and then subscribes to the feed stream.
 
-## Backend model
-- `POST /auth/login` and `GET /session` come from auth service.
-- `GET /tenants/:tenantId/bootstrap` and module actions come from module service.
-- Gateway exposes `POST /auth/login`, `GET /bootstrap`, and `POST /tenants/:tenantId/modules/:moduleKey/run`.
+## Performance model
+- Edge cache on `/` and `/api/home` with stale-while-revalidate.
+- Payload extraction enabled for smaller SSR payload reuse.
+- Public assets compressed by Nitro.
+- Real-time updates patch only feed state instead of re-fetching the whole page.

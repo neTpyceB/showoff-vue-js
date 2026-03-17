@@ -1,26 +1,27 @@
-# Modular SaaS Admin Platform
+# Large-scale Social / Content Platform Frontend
 
-Vue + microservices admin platform with:
-- multi-tenant architecture
-- plugin/module system
-- dynamic routing from backend manifests
-- permission engine
-- gateway + auth + module microservices
-
-## Demo users
-- `owner@saas.local` / `ownerpass`
-- `ops@saas.local` / `opspass`
+Nuxt SSR frontend with:
+- SSR and Nitro edge caching rules
+- complex feed state orchestration
+- real-time feed updates over SSE
+- distributed feed/profile/discovery service integration
+- production-focused performance configuration
+- Docker plus CI/CD and Kubernetes-ready manifests
 
 ## Local URLs
 - App: http://localhost:5173
-- Gateway: http://localhost:3000
-- Auth service: http://localhost:3001
-- Module service: http://localhost:3002
+- Feed service: http://localhost:4101
+- Profile service: http://localhost:4102
+- Discovery service: http://localhost:4103
 
 ## Quality gates
 - `npm run lint`
 - `npm run type-check`
 - `npm run test:unit`
+- `npm run test:integration`
 - `npm run test:smoke`
-- `npm run test:api`
 - `npm run test:e2e`
+
+## Delivery validation
+- Kubernetes manifests are rendered with `kubectl kustomize infra/k8s`
+- Rendered manifests are validated offline with `kubeconform -strict -summary`
