@@ -1,6 +1,7 @@
-import app from './app.mjs'
+import { createRealtimeServer } from './realtime.mjs'
 
 const port = Number(process.env.PORT ?? 3000)
-app.listen(port, () => {
-  console.log(`Knowledge API listening on ${port}`)
+const { server } = createRealtimeServer()
+server.listen(port, () => {
+  console.log(`Collaboration API listening on ${port}`)
 })

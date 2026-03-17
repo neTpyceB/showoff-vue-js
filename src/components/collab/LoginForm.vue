@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 
 const emit = defineEmits<{ submit: [email: string, password: string] }>()
-const email = ref('dev@kb.local')
-const password = ref('devpass')
+const email = ref('editor@collab.local')
+const password = ref('editorpass')
 
 function submit() {
   emit('submit', email.value.trim(), password.value)
@@ -11,16 +11,16 @@ function submit() {
 </script>
 
 <template>
-  <form class="auth" @submit.prevent="submit">
-    <h1>Developer Knowledge Base</h1>
-    <input v-model="email" aria-label="Email" type="email" required />
-    <input v-model="password" aria-label="Password" type="password" required />
+  <form class="login" @submit.prevent="submit">
+    <h1>Real-time Collaboration Dashboard</h1>
+    <input v-model="email" aria-label="Email" required type="email" />
+    <input v-model="password" aria-label="Password" required type="password" />
     <button type="submit">Sign In</button>
   </form>
 </template>
 
 <style scoped>
-.auth {
+.login {
   display: grid;
   gap: 0.75rem;
   max-width: 24rem;
