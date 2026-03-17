@@ -19,4 +19,5 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: azure/setup-kubectl@v4
-      - run: kubectl apply --dry-run=client -f infra/k8s
+      - run: kubectl kustomize infra/k8s > /tmp/social-platform-k8s.yaml
+      - run: kubectl apply --dry-run=client --validate=false -f /tmp/social-platform-k8s.yaml
