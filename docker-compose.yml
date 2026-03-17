@@ -1,47 +1,39 @@
 services:
-  auth:
+  feed:
     build:
       context: .
-      dockerfile: server/Dockerfile
-    command: npm run dev:auth
+      dockerfile: services/Dockerfile
+    command: node services/feed-index.mjs
     ports:
-      - '3001:3001'
+      - '4101:4101'
     healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3001/health']
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:4101/health']
       interval: 5s
       timeout: 3s
       retries: 10
 
-  modules:
+  profile:
     build:
       context: .
-      dockerfile: server/Dockerfile
-    command: npm run dev:modules
+      dockerfile: services/Dockerfile
+    command: node services/profile-index.mjs
     ports:
-      - '3002:3002'
+      - '4102:4102'
     healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3002/health']
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:4102/health']
       interval: 5s
       timeout: 3s
       retries: 10
 
-  gateway:
+  discovery:
     build:
       context: .
-      dockerfile: server/Dockerfile
-    command: npm run dev:gateway
-    environment:
-      AUTH_SERVICE_URL: http://auth:3001
-      MODULE_SERVICE_URL: http://modules:3002
+      dockerfile: services/Dockerfile
+    command: node services/discovery-index.mjs
     ports:
-      - '3000:3000'
-    depends_on:
-      auth:
-        condition: service_healthy
-      modules:
-        condition: service_healthy
+      - '4103:4103'
     healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/health']
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:4103/health']
       interval: 5s
       timeout: 3s
       retries: 10
@@ -52,9 +44,16 @@ services:
       dockerfile: Dockerfile
       target: dev
     environment:
-      VITE_API_URL: http://localhost:3000
+      FEED_SERVICE_URL: http://feed:4101
+      PROFILE_SERVICE_URL: http://profile:4102
+      DISCOVERY_SERVICE_URL: http://discovery:4103
+      NUXT_PUBLIC_FEED_STREAM_URL: http://localhost:4101/events
     ports:
       - '5173:5173'
     depends_on:
-      gateway:
+      feed:
+        condition: service_healthy
+      profile:
+        condition: service_healthy
+      discovery:
         condition: service_healthy

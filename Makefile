@@ -1,6 +1,6 @@
 SHELL := /bin/zsh
 
-.PHONY: install dev lint type-check test-unit test-smoke test-api test-e2e test-all build docker-up docker-down
+.PHONY: install dev lint type-check test-unit test-integration test-smoke test-e2e test-all build docker-up docker-down
 
 install:
 	npm ci
@@ -17,11 +17,11 @@ type-check:
 test-unit:
 	npm run test:unit
 
+test-integration:
+	npm run test:integration
+
 test-smoke:
 	npm run test:smoke
-
-test-api:
-	npm run test:api
 
 test-e2e:
 	npx playwright install --with-deps chromium

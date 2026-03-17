@@ -27,24 +27,24 @@ export default defineConfig({
   ],
   webServer: [
     {
-      command: 'PORT=3101 node server/auth-index.mjs',
-      port: 3101,
-      reuseExistingServer: false,
+      command: 'PORT=4201 node services/feed-index.mjs',
+      port: 4201,
+      reuseExistingServer: true,
     },
     {
-      command: 'PORT=3102 node server/modules-index.mjs',
-      port: 3102,
-      reuseExistingServer: false,
+      command: 'PORT=4202 node services/profile-index.mjs',
+      port: 4202,
+      reuseExistingServer: true,
     },
     {
-      command: 'AUTH_SERVICE_URL=http://127.0.0.1:3101 MODULE_SERVICE_URL=http://127.0.0.1:3102 PORT=3100 node server/index.mjs',
-      port: 3100,
-      reuseExistingServer: false,
+      command: 'PORT=4203 node services/discovery-index.mjs',
+      port: 4203,
+      reuseExistingServer: true,
     },
     {
       command: process.env.CI
-        ? 'VITE_API_URL=http://127.0.0.1:3100 npm run build && VITE_API_URL=http://127.0.0.1:3100 npm run preview -- --host 127.0.0.1 --port 4173'
-        : 'VITE_API_URL=http://127.0.0.1:3100 npm run dev:web -- --host 127.0.0.1 --port 5173',
+        ? 'FEED_SERVICE_URL=http://127.0.0.1:4201 PROFILE_SERVICE_URL=http://127.0.0.1:4202 DISCOVERY_SERVICE_URL=http://127.0.0.1:4203 NUXT_PUBLIC_FEED_STREAM_URL=http://127.0.0.1:4201/events npm run build:web && FEED_SERVICE_URL=http://127.0.0.1:4201 PROFILE_SERVICE_URL=http://127.0.0.1:4202 DISCOVERY_SERVICE_URL=http://127.0.0.1:4203 NUXT_PUBLIC_FEED_STREAM_URL=http://127.0.0.1:4201/events HOST=127.0.0.1 PORT=4173 node .output/server/index.mjs'
+        : 'FEED_SERVICE_URL=http://127.0.0.1:4201 PROFILE_SERVICE_URL=http://127.0.0.1:4202 DISCOVERY_SERVICE_URL=http://127.0.0.1:4203 NUXT_PUBLIC_FEED_STREAM_URL=http://127.0.0.1:4201/events npm run dev:web -- --host 127.0.0.1 --port 5173',
       port: process.env.CI ? 4173 : 5173,
       reuseExistingServer: false,
     },

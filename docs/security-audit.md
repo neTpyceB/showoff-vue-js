@@ -1,16 +1,16 @@
 # Security Audit Notes
 
 ## Current controls
-- Gateway requires bearer auth for bootstrap and module actions.
-- Auth service is the source of tenant memberships.
-- Module service enforces role-derived policies for privileged actions.
+- SSR aggregation stays server-side and does not expose private upstream URLs to browser fetches.
+- Public runtime config exposes only the feed event stream URL needed by the client.
+- No user-generated HTML is injected into the page.
 
 ## Risks
-- Demo token format is not cryptographically signed.
-- Service-to-service traffic is unauthenticated inside the local network.
-- Tenant/module data is in-memory only.
+- Upstream services are mock local services without auth.
+- SSE stream is unauthenticated and intended for demo/local use only.
+- There is no abuse protection on the public feed endpoints.
 
 ## Next hardening
-1. Replace demo tokens with signed JWTs and session expiration.
-2. Add mTLS or signed service tokens between gateway and internal services.
-3. Persist tenant policy changes with immutable audit history.
+1. Add signed viewer sessions and stream authorization.
+2. Introduce rate limiting and bot controls on feed APIs.
+3. Add origin shielding plus signed cache keys for personalized feed variants.
