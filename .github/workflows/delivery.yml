@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
       - uses: azure/setup-kubectl@v4
       - run: kubectl kustomize infra/k8s > /tmp/social-platform-k8s.yaml
-      - run: kubectl apply --dry-run=client --validate=false -f /tmp/social-platform-k8s.yaml
+      - run: go install github.com/yannh/kubeconform/cmd/kubeconform@latest
+      - run: $(go env GOPATH)/bin/kubeconform -strict -summary /tmp/social-platform-k8s.yaml

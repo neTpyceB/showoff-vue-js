@@ -21,3 +21,7 @@ Nuxt SSR frontend with:
 - `npm run test:integration`
 - `npm run test:smoke`
 - `npm run test:e2e`
+
+## Delivery validation
+- Kubernetes manifests are rendered with `kubectl kustomize infra/k8s`
+- Rendered manifests are validated offline with `kubeconform -strict -summary`
