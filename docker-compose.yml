@@ -1,10 +1,45 @@
 services:
-  api:
+  auth:
     build:
       context: .
       dockerfile: server/Dockerfile
+    command: npm run dev:auth
+    ports:
+      - '3001:3001'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3001/health']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  modules:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    command: npm run dev:modules
+    ports:
+      - '3002:3002'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3002/health']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  gateway:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    command: npm run dev:gateway
+    environment:
+      AUTH_SERVICE_URL: http://auth:3001
+      MODULE_SERVICE_URL: http://modules:3002
     ports:
       - '3000:3000'
+    depends_on:
+      auth:
+        condition: service_healthy
+      modules:
+        condition: service_healthy
     healthcheck:
       test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/health']
       interval: 5s
@@ -18,9 +53,8 @@ services:
       target: dev
     environment:
       VITE_API_URL: http://localhost:3000
-      VITE_WS_URL: ws://localhost:3000
     ports:
       - '5173:5173'
     depends_on:
-      api:
+      gateway:
         condition: service_healthy

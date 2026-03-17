@@ -1,15 +1,16 @@
 # Security Audit Notes
 
 ## Current controls
-- Auth token required for `/state` and websocket connection.
-- Role checks enforced for mutating dashboard state.
-- Input validation for state mutation payloads.
+- Gateway requires bearer auth for bootstrap and module actions.
+- Auth service is the source of tenant memberships.
+- Module service enforces role-derived policies for privileged actions.
 
 ## Risks
-- Demo token format is simple and not signed.
-- In-memory state resets on API restart.
+- Demo token format is not cryptographically signed.
+- Service-to-service traffic is unauthenticated inside the local network.
+- Tenant/module data is in-memory only.
 
 ## Next hardening
-1. JWT with expiration and refresh.
-2. Rate limiting and brute-force controls on login.
-3. Persistent event log with immutable audit records.
+1. Replace demo tokens with signed JWTs and session expiration.
+2. Add mTLS or signed service tokens between gateway and internal services.
+3. Persist tenant policy changes with immutable audit history.

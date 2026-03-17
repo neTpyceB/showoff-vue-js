@@ -1,5 +1,8 @@
-import type { Role } from '../types/collab'
-
-export function canEdit(role: Role): boolean {
-  return role === 'admin' || role === 'editor'
+export function canAccess(policies: string[], moduleKey: string, action: 'view' | 'manage' | 'configure') {
+  return (
+    policies.includes('*:manage') ||
+    policies.includes(`${moduleKey}:${action}`) ||
+    (action !== 'configure' && policies.includes(`${moduleKey}:manage`)) ||
+    (action === 'configure' && policies.includes('platform:configure'))
+  )
 }

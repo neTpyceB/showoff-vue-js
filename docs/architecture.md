@@ -1,16 +1,18 @@
 # Architecture
 
 ## Overview
-- Frontend Vue app connects to REST + WebSocket API.
-- API uses Express for auth/state endpoints and `ws` for live event fanout.
+- Vue frontend talks only to the gateway service.
+- Auth service owns identity and tenant memberships.
+- Module service owns tenant manifests, enabled modules, and action authorization.
+- Gateway composes both services into a frontend-friendly bootstrap contract.
 
-## Runtime flow
-1. User authenticates via `POST /auth/login`.
-2. Client fetches snapshot from `GET /state`.
-3. Client opens `ws://.../ws?token=...`.
-4. Role-authorized updates use `PATCH /state` and are broadcast to all websocket clients.
-5. Notifications are emitted on join and state mutation.
+## Frontend model
+- Tenant switch changes the active bootstrap payload.
+- Dynamic routes are registered from backend module manifests.
+- Plugin registry maps module keys to frontend module views.
+- Permission engine evaluates backend-issued policies for `view`, `manage`, and `configure`.
 
-## Permissions
-- `admin`, `editor`: can mutate state.
-- `viewer`: read-only (enforced in backend and UI).
+## Backend model
+- `POST /auth/login` and `GET /session` come from auth service.
+- `GET /tenants/:tenantId/bootstrap` and module actions come from module service.
+- Gateway exposes `POST /auth/login`, `GET /bootstrap`, and `POST /tenants/:tenantId/modules/:moduleKey/run`.

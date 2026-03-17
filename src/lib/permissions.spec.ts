@@ -1,13 +1,16 @@
 import { describe, expect, it } from 'vitest'
-import { canEdit } from './permissions'
+import { canAccess } from './permissions'
 
-describe('permissions', () => {
-  it('allows admin/editor to edit', () => {
-    expect(canEdit('admin')).toBe(true)
-    expect(canEdit('editor')).toBe(true)
+describe('permission engine', () => {
+  it('grants module manage access when explicit policy exists', () => {
+    expect(canAccess(['billing:manage'], 'billing', 'manage')).toBe(true)
   })
 
-  it('denies viewer edits', () => {
-    expect(canEdit('viewer')).toBe(false)
+  it('blocks manage access when only view policy exists', () => {
+    expect(canAccess(['billing:view'], 'billing', 'manage')).toBe(false)
+  })
+
+  it('grants platform configure from platform policy', () => {
+    expect(canAccess(['platform:configure'], 'settings', 'configure')).toBe(true)
   })
 })
