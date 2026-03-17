@@ -1,12 +1,14 @@
 {
-  "name": "realtime-collaboration-dashboard",
-  "version": "3.0.0",
+  "name": "modular-saas-admin-platform",
+  "version": "4.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "run-p dev:*",
+    "dev": "run-p dev:auth dev:modules dev:gateway dev:web",
     "dev:web": "vite --host 0.0.0.0 --port 5173",
-    "dev:api": "node server/index.mjs",
+    "dev:auth": "node server/auth-index.mjs",
+    "dev:modules": "node server/modules-index.mjs",
+    "dev:gateway": "node server/index.mjs",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview --host 0.0.0.0 --port 5173",
     "build-only": "vite build",
@@ -25,8 +27,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "vue": "^3.5.29",
-    "vue-router": "^4.6.3",
-    "ws": "^8.18.3"
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",

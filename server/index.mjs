@@ -1,7 +1,8 @@
-import { createRealtimeServer } from './realtime.mjs'
+import { createGatewayService } from './gateway-service.mjs'
 
 const port = Number(process.env.PORT ?? 3000)
-const { server } = createRealtimeServer()
-server.listen(port, () => {
-  console.log(`Collaboration API listening on ${port}`)
+const app = createGatewayService()
+
+app.listen(port, () => {
+  console.log(`Gateway listening on ${port}`)
 })

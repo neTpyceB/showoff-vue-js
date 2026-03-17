@@ -1,7 +1,18 @@
 :root {
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #101623;
-  background: #f8fafc;
+  --paper: #f6efe4;
+  --paper-deep: #eadcc6;
+  --ink: #2f2619;
+  --ink-strong: #17120c;
+  --accent: #a24a2d;
+  --border: rgba(87, 61, 37, 0.18);
+  --panel: rgba(255, 248, 239, 0.78);
+  --panel-strong: rgba(233, 217, 191, 0.78);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(162, 74, 45, 0.16), transparent 26rem),
+    radial-gradient(circle at bottom right, rgba(57, 92, 126, 0.18), transparent 28rem),
+    linear-gradient(180deg, var(--paper) 0%, #f8f3eb 100%);
 }
 
 * {
@@ -10,17 +21,42 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background: transparent;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Iowan Old Style", "Palatino Linotype", serif;
+  color: var(--ink-strong);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
 input,
+select,
 button {
-  border: 1px solid #cdd5df;
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.7rem;
-  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  padding: 0.7rem 0.85rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }

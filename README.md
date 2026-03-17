@@ -1,21 +1,21 @@
-# Real-time Collaboration Dashboard
+# Modular SaaS Admin Platform
 
-Vue + WebSocket collaboration dashboard with:
-- WebSocket integration
-- shared live state updates
-- notifications feed
-- role-based permissions (`admin`, `editor`, `viewer`)
-- dockerized frontend + API services
+Vue + microservices admin platform with:
+- multi-tenant architecture
+- plugin/module system
+- dynamic routing from backend manifests
+- permission engine
+- gateway + auth + module microservices
 
 ## Demo users
-- `admin@collab.local` / `adminpass`
-- `editor@collab.local` / `editorpass`
-- `viewer@collab.local` / `viewerpass`
+- `owner@saas.local` / `ownerpass`
+- `ops@saas.local` / `opspass`
 
 ## Local URLs
 - App: http://localhost:5173
-- API: http://localhost:3000
-- Health: http://localhost:3000/health
+- Gateway: http://localhost:3000
+- Auth service: http://localhost:3001
+- Module service: http://localhost:3002
 
 ## Quality gates
 - `npm run lint`
