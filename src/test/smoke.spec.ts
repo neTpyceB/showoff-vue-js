@@ -6,17 +6,17 @@ import App from '../App.vue'
 const router = createRouter({
   history: createMemoryHistory(),
   routes: [
-    { path: '/login', component: { template: '<h1>Developer Knowledge Base</h1>' } },
-    { path: '/', component: { template: '<h1>KB</h1>' } },
+    { path: '/login', component: { template: '<h1>Real-time Collaboration Dashboard</h1>' } },
+    { path: '/', component: { template: '<h1>Dashboard</h1>' } },
   ],
 })
 
 describe('smoke', () => {
-  it('renders app shell', async () => {
+  it('renders login shell', async () => {
     router.push('/login')
     await router.isReady()
     const wrapper = mount(App, { global: { plugins: [router] } })
 
-    expect(wrapper.text()).toContain('Developer Knowledge Base')
+    expect(wrapper.text()).toContain('Real-time Collaboration Dashboard')
   })
 })

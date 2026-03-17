@@ -29,14 +29,14 @@ export default defineConfig({
     {
       command: 'npm run dev:api',
       port: 3000,
-      reuseExistingServer: true,
+      reuseExistingServer: false,
     },
     {
       command: process.env.CI
         ? 'npm run build && npm run preview -- --host 127.0.0.1 --port 4173'
         : 'npm run dev:web -- --host 127.0.0.1 --port 5173',
       port: process.env.CI ? 4173 : 5173,
-      reuseExistingServer: true,
+      reuseExistingServer: false,
     },
   ],
 })

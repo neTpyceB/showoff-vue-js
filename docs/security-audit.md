@@ -1,15 +1,15 @@
 # Security Audit Notes
 
-## Implemented controls
-- Auth required for write operations (`POST`, `PUT`, `DELETE /articles`).
-- Input normalization for tags and title validation.
-- CORS and JSON body parsing explicitly configured.
+## Current controls
+- Auth token required for `/state` and websocket connection.
+- Role checks enforced for mutating dashboard state.
+- Input validation for state mutation payloads.
 
-## Residual risks
-- Demo token model is not cryptographically signed.
-- Credentials are seed-only and for local/dev use.
+## Risks
+- Demo token format is simple and not signed.
+- In-memory state resets on API restart.
 
-## Next hardening steps
-1. Replace demo token with JWT and expiration.
-2. Add rate limiting and auth failure lockouts.
-3. Add dependency review and CodeQL workflows.
+## Next hardening
+1. JWT with expiration and refresh.
+2. Rate limiting and brute-force controls on login.
+3. Persistent event log with immutable audit records.

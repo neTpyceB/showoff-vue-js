@@ -13,16 +13,14 @@ body {
 }
 
 button,
-input,
-textarea {
+input {
   font: inherit;
 }
 
 input,
-textarea,
 button {
   border: 1px solid #cdd5df;
   border-radius: 0.5rem;
-  padding: 0.55rem 0.7rem;
+  padding: 0.5rem 0.7rem;
   background: #fff;
 }

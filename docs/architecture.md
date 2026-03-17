@@ -1,20 +1,16 @@
 # Architecture
 
-## System overview
-- Vue frontend (`src/`) handles auth/session, editor, list/search UI.
-- Express REST API (`server/`) handles auth and article CRUD.
-- Shared contract is HTTP JSON (`/auth/login`, `/articles`).
+## Overview
+- Frontend Vue app connects to REST + WebSocket API.
+- API uses Express for auth/state endpoints and `ws` for live event fanout.
 
-## Frontend modules
-- `src/composables/useAuth.ts`: login/logout and local session persistence.
-- `src/composables/useKnowledgeBase.ts`: article loading, search, save, delete.
-- `src/components/kb/MarkdownEditor.vue`: markdown authoring and preview.
-- `src/components/kb/ArticleList.vue`: search, tags, list, edit/remove actions.
+## Runtime flow
+1. User authenticates via `POST /auth/login`.
+2. Client fetches snapshot from `GET /state`.
+3. Client opens `ws://.../ws?token=...`.
+4. Role-authorized updates use `PATCH /state` and are broadcast to all websocket clients.
+5. Notifications are emitted on join and state mutation.
 
-## API modules
-- `server/app.mjs`: endpoints and data persistence.
-- `server/data.json`: seed users/articles and persisted state.
-
-## Security
-- Token-based auth header for mutating endpoints.
-- Simple local development token model; extensible to JWT/provider.
+## Permissions
+- `admin`, `editor`: can mutate state.
+- `viewer`: read-only (enforced in backend and UI).

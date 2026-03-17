@@ -1,6 +1,6 @@
 # Roadmap Ideas
 
-1. Replace file storage with PostgreSQL and migrations.
-2. Add role-based permissions per article and team scope.
-3. Add revision history and markdown diff view.
-4. Add semantic search (embedding index) for docs retrieval.
+1. Persist state/events in PostgreSQL with migrations.
+2. Add team/channel scoping for dashboard rooms.
+3. Add audit timeline with user/action filters.
+4. Add reconnection backoff and offline queue.

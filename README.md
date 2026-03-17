@@ -1,35 +1,26 @@
-# Developer Knowledge Base Platform
+# Real-time Collaboration Dashboard
 
-Vue 3 + REST API knowledge base platform with:
-- authentication
-- markdown editing + live preview
-- tagging system
-- search and tag filtering
-- REST API integration
+Vue + WebSocket collaboration dashboard with:
+- WebSocket integration
+- shared live state updates
+- notifications feed
+- role-based permissions (`admin`, `editor`, `viewer`)
+- dockerized frontend + API services
 
-## Default demo credentials
-- email: `dev@kb.local`
-- password: `devpass`
+## Demo users
+- `admin@collab.local` / `adminpass`
+- `editor@collab.local` / `editorpass`
+- `viewer@collab.local` / `viewerpass`
 
-## Run local
-```bash
-npm ci
-npm run dev
-```
-- Web: http://localhost:5173
+## Local URLs
+- App: http://localhost:5173
 - API: http://localhost:3000
+- Health: http://localhost:3000/health
 
-## Docker
-```bash
-docker compose up --build
-```
-
-## Test gates
-```bash
-npm run lint
-npm run type-check
-npm run test:unit
-npm run test:smoke
-npm run test:api
-npm run test:e2e
-```
+## Quality gates
+- `npm run lint`
+- `npm run type-check`
+- `npm run test:unit`
+- `npm run test:smoke`
+- `npm run test:api`
+- `npm run test:e2e`

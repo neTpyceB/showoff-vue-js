@@ -1,6 +1,6 @@
 # Engineering Rules
 
-- Use composables for stateful domain logic and components for rendering.
-- Keep API payloads strict and explicit.
-- Prefer deterministic tests over implicit timing assumptions.
-- CI must run lint, type-check, unit, smoke, API, and e2e before merge.
+- Keep websocket payloads versioned and explicit.
+- Enforce permissions on server first, then reflect in UI.
+- Keep e2e coverage for multi-user synchronization.
+- Docker and CI must validate full stack behavior.

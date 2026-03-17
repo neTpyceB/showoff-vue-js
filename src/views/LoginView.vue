@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import AuthForm from '../components/kb/AuthForm.vue'
+import LoginForm from '../components/collab/LoginForm.vue'
 import { useAuth } from '../composables/useAuth'
 
 const router = useRouter()
@@ -20,6 +20,6 @@ async function signIn(email: string, password: string) {
 </script>
 
 <template>
-  <AuthForm @submit="signIn" />
+  <LoginForm @submit="signIn" />
   <p v-if="error">{{ error }}</p>
 </template>

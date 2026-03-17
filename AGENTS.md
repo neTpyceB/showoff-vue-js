@@ -1,9 +1,9 @@
 # AGENTS Rules
 
 ## Development standards
-- Keep implementation concise, composable, and explicit.
+- Keep implementation concise and explicit.
 - Use latest stable dependencies and Node 22+.
-- Any code change must be followed by lint, type-check, and all test suites.
+- Any code change must be followed by lint, type-check, and full test suite.
 
 ## Required validation sequence
 1. `npm run lint`
@@ -13,5 +13,5 @@
 5. `npm run test:api`
 6. `npm run test:e2e`
 
-## Documentation sync
-- Keep `README.md`, `docs/architecture.md`, `docs/roadmap.md`, `docs/rules.md`, and `docs/security-audit.md` aligned with implementation.
+## Project docs
+- Keep `README.md`, `docs/architecture.md`, `docs/roadmap.md`, `docs/rules.md`, and `docs/security-audit.md` synchronized.

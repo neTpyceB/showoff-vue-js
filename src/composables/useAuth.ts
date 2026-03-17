@@ -1,11 +1,11 @@
 import { computed, ref } from 'vue'
 import { login as loginApi } from '../lib/api'
-import type { User } from '../types/kb'
+import type { User } from '../types/collab'
 
-const TOKEN_KEY = 'kb-token'
-const USER_KEY = 'kb-user'
+const TOKEN_KEY = 'collab-token'
+const USER_KEY = 'collab-user'
 
-const token = ref<string>(localStorage.getItem(TOKEN_KEY) ?? '')
+const token = ref(localStorage.getItem(TOKEN_KEY) ?? '')
 const user = ref<User | null>(safeParse(localStorage.getItem(USER_KEY)))
 const error = ref('')
 
@@ -18,11 +18,10 @@ export function useAuth() {
       const data = await loginApi(email, password)
       token.value = data.token
       user.value = data.user
-
       localStorage.setItem(TOKEN_KEY, token.value)
       localStorage.setItem(USER_KEY, JSON.stringify(user.value))
     } catch {
-      error.value = 'Authentication failed. Ensure API is running on localhost:3000.'
+      error.value = 'Login failed'
       throw new Error(error.value)
     }
   }
@@ -34,14 +33,7 @@ export function useAuth() {
     localStorage.removeItem(USER_KEY)
   }
 
-  return {
-    token,
-    user,
-    error,
-    isAuthenticated,
-    login,
-    logout,
-  }
+  return { token, user, error, isAuthenticated, login, logout }
 }
 
 function safeParse(raw: string | null): User | null {
